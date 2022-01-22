@@ -1,0 +1,37 @@
+{
+  "name": "average-users",
+  "version": "1.0.0",
+  "description": "Service of the average number of users who entered on the last day.",
+  "main": "server.js",
+  "scripts": {
+    "start": "babel-node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bhalut/average-users.git"
+  },
+  "keywords": [
+    "service",
+    "node"
+  ],
+  "author": "Abdel Mejia <bhalut.bear@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bhalut/average-users/issues"
+  },
+  "homepage": "https://github.com/Bhalut/average-users#readme",
+  "dependencies": {
+    "dotenv": "^14.2.0",
+    "express": "^4.17.2",
+    "pg": "^8.7.1",
+    "socket.io": "^4.4.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.8",
+    "@babel/core": "^7.16.12",
+    "@babel/node": "^7.16.8",
+    "@babel/preset-env": "^7.16.11"
+  }
+}

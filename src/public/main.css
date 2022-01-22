@@ -1,0 +1,14 @@
+body {
+  background-color: #222222;
+}
+
+h1 {
+  color: #f1f1f1;
+  text-align: center;
+}
+
+.console {
+  width: 75%;
+  aspect-ratio: 3 / 4;
+  overflow: auto;
+}
