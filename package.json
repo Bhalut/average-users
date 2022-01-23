@@ -2,7 +2,7 @@
   "name": "average-users",
   "version": "1.0.0",
   "description": "Service of the average number of users who entered on the last day.",
-  "main": "server.js",
+  "main": "src/index.js",
   "scripts": {
     "start": "babel-node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
