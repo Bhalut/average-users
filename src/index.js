@@ -5,6 +5,8 @@ import { Client } from "pg";
 import { Server } from "socket.io";
 
 const PORT = 5000;
+const interval = 10 * 1000;
+
 const app = express();
 const server = http.createServer(app);
 
@@ -26,7 +28,7 @@ const client = new Client(connectionData);
 
 client.connect();
 
-async function averageUsers(lastRegister = true) {
+async function averageUsers() {
   const { rows } = await client.query(
     `
   SELECT *
@@ -40,24 +42,20 @@ async function averageUsers(lastRegister = true) {
   return rows;
 }
 
-const interval = 10 * 1000;
-
-function main() {
-  averageUsers().then((response) => {
-    console.log(Number(response[0].lastday));
-  });
-}
-
 app.use(express.static(__dirname + "/public"));
 
 io.on("connection", (socket) => {
-  console.log(`User connected ID: ${socket.io}`);
-  setInterval(main, interval);
-  socket.emit("average");
+  console.log(`User connected ID: ${socket.id}`);
+  const intervalId = setInterval(async () => {
+    const response = await averageUsers();
+    const average = Number(response[0].lastday);
+
+    socket.emit("average", average);
+  }, interval);
 
   socket.on("disconnect", () => {
     console.log(`User disconnected ${socket.id}`);
-    clearInterval(averageUsers);
+    clearInterval(intervalId);
   });
 });
 
